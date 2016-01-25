@@ -14,11 +14,12 @@ class Form(forms.BaseForm):
         s['ENABLE_CELERY'] = env('ENABLE_CELERY', bool(s['BROKER_URL']))
         if not s['ENABLE_CELERY']:
             return settings
-        s['INSTALLED_APPS'].append('aldryn_celery')
         s['INSTALLED_APPS'].append('djcelery')
+        # aldryn_celery must be after djcelery so it can manipulate admin
+        s['INSTALLED_APPS'].append('aldryn_celery')
         s['CELERYBEAT_SCHEDULER'] = env('CELERYBEAT_SCHEDULER', 'djcelery.schedulers.DatabaseScheduler')
+        s['CELERY_RESULT_BACKEND'] = env('CELERY_RESULT_BACKEND', 'djcelery.backends.database:DatabaseBackend')
 
-        s['CELERY_RESULT_BACKEND'] = env('CELERY_RESULT_BACKEND', 'djcelery.backends.database.DatabaseBackend')
         s['CELERY_TASK_RESULT_EXPIRES'] = env('CELERY_TASK_RESULT_EXPIRES', 5*60*60)
         s['CELERY_ACCEPT_CONTENT'] = env('CELERY_ACCEPT_CONTENT', ['json'])
         s['CELERY_TASK_SERIALIZER'] = env('CELERY_TASK_SERIALIZER', 'json')

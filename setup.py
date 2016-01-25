@@ -11,9 +11,14 @@ setup(
     url='https://github.com/aldryn/aldryn-celery',
     packages=find_packages(),
     install_requires=(
+        'aldryn-django',
         'django-celery',
         'celery',
     ),
     include_package_data=True,
     zip_safe=False,
+    classifiers=[
+        'License :: OSI Approved :: BSD License',
+        'Framework :: Django',
+    ]
 )

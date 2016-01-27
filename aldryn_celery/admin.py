@@ -1,34 +1,28 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import
 from django.contrib import admin
+from django.utils.timesince import timesince
+from django.utils import timezone
 import djcelery.models
-import celery
+import djcelery.admin
 
 
-# hide unused Tables from admin
-# these would require the obsolete ``manage.py celerycam`` to be running.
-try:
-    admin.site.unregister(djcelery.models.TaskState)
-except Exception as e:
-    print e
-try:
-    admin.site.unregister(djcelery.models.WorkerState)
-except Exception as e:
-    print e
-
-
-# show task results from the database result backend
-class TaskMetaAdmin(admin.ModelAdmin):
-    detail_title = 'Task Result'
-    detail_title = 'Task Results'
-    list_display = (
-        'task_id',
-        'status',
-        'date_done',
-        'hidden',
-    )
-    date_hierarchy = ''
-    readonly_fields = (
-        'result',
+# show heartbeat on WorkerState
+class WorkerMonitor(djcelery.admin.WorkerMonitor):
+    list_display = djcelery.admin.WorkerMonitor.list_display + (
+        'last_heartbeat',
+        'since_last_heartbeat',
     )
 
+    def since_last_heartbeat(self, obj):
+        if obj.last_heartbeat:
+            timesince_exact = timezone.now() - obj.last_heartbeat
+            timesince_pretty = timesince(obj.last_heartbeat)
+            return u'<div title="{}">{}</div>'.format(
+                    timesince_exact, timesince_pretty)
 
-admin.site.register(djcelery.models.TaskMeta, TaskMetaAdmin)
+        return None
+    since_last_heartbeat.allow_tags = True
+
+admin.site.unregister(djcelery.models.WorkerState)
+admin.site.register(djcelery.models.WorkerState, WorkerMonitor)

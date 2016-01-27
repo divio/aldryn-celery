@@ -15,7 +15,7 @@ class Form(forms.BaseForm):
         if not s['ENABLE_CELERY']:
             return settings
         s['INSTALLED_APPS'].append('djcelery')
-        # aldryn_celery must be after djcelery so it can manipulate admin
+        # aldryn_celery must be after djcelery so it can manipulate its admin
         s['INSTALLED_APPS'].append('aldryn_celery')
         s['CELERYBEAT_SCHEDULER'] = env('CELERYBEAT_SCHEDULER', 'djcelery.schedulers.DatabaseScheduler')
         s['CELERY_RESULT_BACKEND'] = env('CELERY_RESULT_BACKEND', 'djcelery.backends.database:DatabaseBackend')

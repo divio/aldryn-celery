@@ -26,6 +26,7 @@ class Form(forms.BaseForm):
 
         s['CELERYD_PREFETCH_MULTIPLIER'] = env('CELERYD_PREFETCH_MULTIPLIER', 1)
         s['CELERY_ACKS_LATE'] = env('CELERY_ACKS_LATE', True)
+        s['CELERY_TRACK_STARTED'] = env('CELERY_TRACK_STARTED', True)
 
         s['CELERYBEAT_SCHEDULE'] = env('CELERYBEAT_SCHEDULE', {
             # 'my-task-name': {
@@ -36,6 +37,11 @@ class Form(forms.BaseForm):
             # },
         })
         s['CELERY_REDIRECT_STDOUTS_LEVEL'] = env('CELERY_REDIRECT_STDOUTS_LEVEL', 'INFO')
+        s['CELERYD_CONCURRENCY'] = env('CELERYD_CONCURRENCY', '2')
+        s['CELERY_SEND_EVENTS'] = env('CELERY_SEND_EVENTS', True)
+
+        s['CELERY_CAM_CLASS'] = env('CELERY_CAM_CLASS', 'djcelery.snapshot.Camera')
+        s['CELERY_CAM_FREQUENCY'] = env('CELERY_CAM_FREQUENCY', 10)
 
         # celery uses CELERY_ENABLE_UTC=True as default and djcelery (and thus
         # celerycam) uses CELERY_ENABLE_UTC=False as default. This causes

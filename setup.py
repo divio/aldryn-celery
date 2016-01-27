@@ -46,6 +46,10 @@ setup(
         'django-celery',
         'celery',
     ),
+    entry_points='''
+        [console_scripts]
+        aldryn-celery=aldryn_celery.cli:main
+    ''',
     include_package_data=True,
     zip_safe=False,
     classifiers=[

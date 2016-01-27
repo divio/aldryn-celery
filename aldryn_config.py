@@ -36,4 +36,11 @@ class Form(forms.BaseForm):
             # },
         })
         s['CELERY_REDIRECT_STDOUTS_LEVEL'] = env('CELERY_REDIRECT_STDOUTS_LEVEL', 'INFO')
+
+        # celery uses CELERY_ENABLE_UTC=True as default and djcelery (and thus
+        # celerycam) uses CELERY_ENABLE_UTC=False as default. This causes
+        # timestamp offsets when checking for worker heartbeats (and possibly
+        # other problems). So we need to set it explicitly here.
+        s['CELERY_TIMEZONE'] = 'UTC'
+        s['CELERY_ENABLE_UTC'] = True
         return s

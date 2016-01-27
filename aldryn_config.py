@@ -35,4 +35,5 @@ class Form(forms.BaseForm):
             #     'options': {},
             # },
         })
+        s['CELERY_REDIRECT_STDOUTS_LEVEL'] = env('CELERY_REDIRECT_STDOUTS_LEVEL', 'INFO')
         return s

@@ -81,8 +81,8 @@ def start_worker_command(settings):
         '--app=aldryn_celery',
         'worker',
     ]
-    if settings['CELERYD_OPTIMIZATION_PROFILE']:
-        cmd.append('-O{}'.format(settings['CELERYD_OPTIMIZATION_PROFILE']))
+    if settings['CELERY_OPTIMIZATION_PROFILE']:
+        cmd.append('-O{}'.format(settings['CELERY_OPTIMIZATION_PROFILE']))
     return cmd
 
 

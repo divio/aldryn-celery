@@ -38,9 +38,9 @@ class Form(forms.BaseForm):
         # Tell the celery worker master process to use the 'fair' optimisation
         # profile. This prevents cases where workers get tasks assigned, even
         # though they are still handling long running tasks.
-        # CELERYD_OPTIMIZATION_PROFILE is not an official celery setting. We
+        # CELERY_OPTIMIZATION_PROFILE is not an official celery setting. We
         # just use it in our cli to add the -Ofair option.
-        s['CELERYD_OPTIMIZATION_PROFILE'] = env('CELERYD_OPTIMIZATION_PROFILE', 'fair')
+        s['CELERY_OPTIMIZATION_PROFILE'] = env('CELERY_OPTIMIZATION_PROFILE', 'fair')
 
         s['CELERYBEAT_SCHEDULE'] = env('CELERYBEAT_SCHEDULE', {
             # 'my-task-name': {

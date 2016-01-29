@@ -30,6 +30,11 @@ class Form(forms.BaseForm):
 
         s['CELERY_TRACK_STARTED'] = env('CELERY_TRACK_STARTED', True)
 
+        # rate limits add a huge amount of complexity to celery code and thus
+        # potential for things to go wrong. They are also very rarely used.
+        # Disable them by default.
+        s['CELERY_DISABLE_RATE_LIMITS'] = env('CELERY_DISABLE_RATE_LIMITS', True)
+
         # Tell the celery worker master process to use the 'fair' optimisation
         # profile. This prevents cases where workers get tasks assigned, even
         # though they are still handling long running tasks.

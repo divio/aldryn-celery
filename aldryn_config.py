@@ -24,9 +24,23 @@ class Form(forms.BaseForm):
         s['CELERY_ACCEPT_CONTENT'] = env('CELERY_ACCEPT_CONTENT', ['json'])
         s['CELERY_TASK_SERIALIZER'] = env('CELERY_TASK_SERIALIZER', 'json')
 
+
         s['CELERYD_PREFETCH_MULTIPLIER'] = env('CELERYD_PREFETCH_MULTIPLIER', 1)
         s['CELERY_ACKS_LATE'] = env('CELERY_ACKS_LATE', True)
+
         s['CELERY_TRACK_STARTED'] = env('CELERY_TRACK_STARTED', True)
+
+        # rate limits add a huge amount of complexity to celery code and thus
+        # potential for things to go wrong. They are also very rarely used.
+        # Disable them by default.
+        s['CELERY_DISABLE_RATE_LIMITS'] = env('CELERY_DISABLE_RATE_LIMITS', True)
+
+        # Tell the celery worker master process to use the 'fair' optimisation
+        # profile. This prevents cases where workers get tasks assigned, even
+        # though they are still handling long running tasks.
+        # CELERY_OPTIMIZATION_PROFILE is not an official celery setting. We
+        # just use it in our cli to add the -Ofair option.
+        s['CELERY_OPTIMIZATION_PROFILE'] = env('CELERY_OPTIMIZATION_PROFILE', 'fair')
 
         s['CELERYBEAT_SCHEDULE'] = env('CELERYBEAT_SCHEDULE', {
             # 'my-task-name': {

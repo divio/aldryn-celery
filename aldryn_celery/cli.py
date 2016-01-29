@@ -76,11 +76,14 @@ def execute(args, script=None):
 
 
 def start_worker_command(settings):
-    return [
+    cmd = [
         'celery',
         '--app=aldryn_celery',
         'worker',
     ]
+    if settings['CELERY_OPTIMIZATION_PROFILE']:
+        cmd.append('-O{}'.format(settings['CELERY_OPTIMIZATION_PROFILE']))
+    return cmd
 
 
 def start_cam_command(settings):

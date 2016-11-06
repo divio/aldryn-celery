@@ -38,16 +38,6 @@ def beat(ctx_obj):
     execute(start_beat_command(settings=ctx_obj['settings']))
 
 
-@click.command(name='all')
-@click.pass_obj
-def start_all(ctx_obj):
-    """
-    coming soon: launch the background worker
-    """
-    # TODO: celery worker startup, once available
-    pass
-
-
 @click.group()
 @click.option('--verbose', is_flag=True)
 @click.pass_context
@@ -66,7 +56,6 @@ def main(ctx, verbose):
 main.add_command(worker)
 main.add_command(cam)
 main.add_command(beat)
-main.add_command(start_all)
 
 
 def execute(args, script=None):

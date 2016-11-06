@@ -7,6 +7,8 @@ from django.conf import settings as django_settings
 
 
 # add the current directory to pythonpath. So the project files can be read.
+from django.core.exceptions import ImproperlyConfigured
+
 BASE_DIR = os.getcwd()
 sys.path.insert(0, BASE_DIR)
 
@@ -51,6 +53,8 @@ def main(ctx, verbose):
     ctx.obj = {
         'settings': {key: getattr(django_settings, key) for key in dir(django_settings)}
     }
+    if not ctx.obj['settings'].get('ENABLE_CELERY'):
+        raise ImproperlyConfigured('Celery is not enabled.')
 
 
 main.add_command(worker)

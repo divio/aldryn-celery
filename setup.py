@@ -44,7 +44,7 @@ setup(
     install_requires=(
         'aldryn-django',
         'django-celery',
-        'celery',
+        'celery==3.1.25',
     ),
     entry_points='''
         [console_scripts]

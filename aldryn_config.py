@@ -63,4 +63,9 @@ class Form(forms.BaseForm):
         # other problems). So we need to set it explicitly here.
         s['CELERY_TIMEZONE'] = 'UTC'
         s['CELERY_ENABLE_UTC'] = True
+
+        s['LOGGING']['loggers']['celery'] = {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        }
         return s

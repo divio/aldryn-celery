@@ -69,6 +69,11 @@ Add the following services to your ``docker-compose.yml`` file::
         RABBITMQ_ERLANG_COOKIE: "secret cookie here"
    
 For ``celeryworker``, ``celerybeat`` and ``celerycam`` copy in all the options from the ``web`` service, except ``ports``.
+In ``web``, ``celeryworker``, ``celerybeat`` and ``celerycam`` add::
+
+    links:
+      - "rabbitmq:rabbitmq"
+
 In ``.env-local`` add the following::
 
     RABBITMQ_ERLANG_COOKIE="secret cookie here"

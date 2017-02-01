@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-from django.conf import settings
-
 import aldryn_django.startup
+
 from celery import Celery
 
 
-aldryn_django.startup._setup(settings.BASE_DIR)
+# `path` is not used anymore but still required
+aldryn_django.startup._setup(path=None)
+
+from django.conf import settings  # noqa
 
 app = Celery('aldryn_celery')
 

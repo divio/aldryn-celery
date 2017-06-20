@@ -1,16 +1,15 @@
 #-*- coding: utf-8 -*-
 from __future__ import absolute_import
-import click
+
 import os
-import sys
+
+import click
+
 from django.conf import settings as django_settings
-
-
-# add the current directory to pythonpath. So the project files can be read.
 from django.core.exceptions import ImproperlyConfigured
 
+
 BASE_DIR = os.getcwd()
-sys.path.insert(0, BASE_DIR)
 
 
 @click.command()
@@ -46,9 +45,6 @@ def beat(ctx_obj):
 def main(ctx, verbose):
     if not os.path.exists(os.path.join(BASE_DIR, 'manage.py')):
         raise click.UsageError('make sure you are in the same directory as manage.py')
-
-    from aldryn_django import startup
-    startup._setup(BASE_DIR)
 
     ctx.obj = {
         'settings': {key: getattr(django_settings, key) for key in dir(django_settings)}

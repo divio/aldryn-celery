@@ -9,13 +9,16 @@ from celery import Celery
 
 from django.conf import settings
 
-# Adds the current directory to python path.
-# This is required for django to find the settings module
-sys.path.insert(0, os.getcwd())
+
+BASE_DIR = os.getcwd()
+
+if BASE_DIR not in sys.path:
+    # Adds the current directory to python path.
+    # This is required for django to find the settings module
+    sys.path.insert(0, BASE_DIR)
 
 # Sets DJANGO_SETTINGS_MODULE environment variable
-# Calls django.setup() to setup app registry
-aldryn_django.startup.setup(path=None)
+aldryn_django.startup._setup(path=None)
 
 app = Celery('aldryn_celery')
 app.config_from_object(settings)

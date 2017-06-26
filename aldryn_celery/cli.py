@@ -5,6 +5,7 @@ import os
 
 import click
 
+import django
 from django.conf import settings as django_settings
 from django.core.exceptions import ImproperlyConfigured
 
@@ -51,6 +52,9 @@ def main(ctx, verbose):
     }
     if not ctx.obj['settings'].get('ENABLE_CELERY'):
         raise ImproperlyConfigured('Celery is not enabled.')
+
+    # Setup app registry
+    django.setup()
 
 
 main.add_command(worker)

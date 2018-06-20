@@ -11,6 +11,8 @@ To be used together with aldryn-django.
 Installation & Updates
 ======================
 
+`Installation Documentation on docs.divio.com <http://docs.divio.com/en/latest/how-to/configure-celery.html>`_
+
 *********************
 Aldryn Platform Users
 *********************

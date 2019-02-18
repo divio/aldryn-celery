@@ -1,0 +1,3 @@
+https://github.com/divio/aldryn-django/archive/support/1.11.x.zip
+django-celery
+celery==3.1.25

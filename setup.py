@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from setuptools import find_packages, setup
 
-from aldryn_celery import __version__
-
 
 # from https://gist.github.com/techtonik/4066623
 def get_version(relpath):

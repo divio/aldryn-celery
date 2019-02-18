@@ -21,7 +21,7 @@ class WorkerMonitor(djcelery.admin.WorkerMonitor):
             timesince_exact = timezone.now() - obj.last_heartbeat
             timesince_pretty = timesince(obj.last_heartbeat)
             return u'<div title="{}">{}</div>'.format(
-                    timesince_exact, timesince_pretty)
+                timesince_exact, timesince_pretty)
 
         return None
     since_last_heartbeat.allow_tags = True

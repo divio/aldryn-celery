@@ -83,7 +83,4 @@ setup(
         [console_scripts]
         aldryn-celery=aldryn_celery.cli:main
     ''',
-    # entry_points = {
-    #     'console_scripts': ['aldryn-celery=aldryn_celery.cli:main'],
-    # },
 )

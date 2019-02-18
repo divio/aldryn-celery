@@ -68,8 +68,7 @@ CLASSIFIERS = [
 
 setup(
     name='aldryn-celery',
-    # version=get_version('aldryn_celery/__init__.py'),
-    version=__version__,
+    version=get_version('aldryn_celery/__init__.py'),
     author='Divio AG',
     author_email='info@divio.ch',
     url='https://github.com/divio/aldryn-celery',

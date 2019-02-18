@@ -1,11 +1,23 @@
-#############
+=============
 Aldryn Celery
-#############
+=============
 
 |PyPI Version|
 
 An opinionated Celery setup bundled as an Aldryn Addon.
 To be used together with aldryn-django.
+
+Contributing
+============
+
+This is a an open-source project. We'll be delighted to receive your
+feedback in the form of issues and pull requests. Before submitting your
+pull request, please review our `contribution guidelines
+<http://docs.django-cms.org/en/latest/contributing/index.html>`_.
+
+We're grateful to all contributors who have helped create and maintain this package.
+Contributors are listed at the `contributors <https://github.com/divio/aldryn-celery/graphs/contributors>`_
+section.
 
 ======================
 Installation & Updates
@@ -33,7 +45,6 @@ Manual Installation
 tbd.
 
 
-=====
 Usage
 =====
 
@@ -48,12 +59,11 @@ Use the following commands to start the celery processes:
 * ``aldryn-celery beat``
 * ``aldryn-celery cam``
 
-==============================
 Local setup on Aldryn Platform
 ==============================
 
 Add the following services to your ``docker-compose.yml`` file::
-   
+
     celeryworker:
       command: aldryn-celery worker
     celerybeat:
@@ -69,7 +79,7 @@ Add the following services to your ``docker-compose.yml`` file::
         - "15672"
       environment:
         RABBITMQ_ERLANG_COOKIE: "secret cookie here"
-   
+
 For ``celeryworker``, ``celerybeat`` and ``celerycam`` copy in all the options from the ``web`` service, except ``ports``.
 
 In ``web``, ``celeryworker``, ``celerybeat`` and ``celerycam`` add::

@@ -1,13 +1,15 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
-import click
+
 import os
 import sys
+
 from django.conf import settings as django_settings
-
-
 # add the current directory to pythonpath. So the project files can be read.
 from django.core.exceptions import ImproperlyConfigured
+
+import click
+
 
 BASE_DIR = os.getcwd()
 sys.path.insert(0, BASE_DIR)

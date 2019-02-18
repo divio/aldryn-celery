@@ -79,7 +79,7 @@ setup(
     install_requires=REQUIREMENTS,
     classifiers=CLASSIFIERS,
     test_suite='tests.settings.run',
-    entry_points=''
-        '[console_scripts]'
-        'aldryn-celery=aldryn_celery.cli:main',
+    entry_points = {
+        'console_scripts': ['aldryn-celery=aldryn_celery.cli:main'],
+    },
 )

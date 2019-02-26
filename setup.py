@@ -33,7 +33,7 @@ def get_version(relpath):
 
 
 REQUIREMENTS = [
-    'aldryn-django',
+    'aldryn-django>=1.11.20.1',
     'django-celery',
     'celery==3.1.25',
 ]

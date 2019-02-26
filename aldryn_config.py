@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from functools import partial
+
 from aldryn_client import forms
 
 
@@ -20,10 +21,9 @@ class Form(forms.BaseForm):
         s['CELERYBEAT_SCHEDULER'] = env('CELERYBEAT_SCHEDULER', 'djcelery.schedulers.DatabaseScheduler')
         s['CELERY_RESULT_BACKEND'] = env('CELERY_RESULT_BACKEND', 'djcelery.backends.database:DatabaseBackend')
 
-        s['CELERY_TASK_RESULT_EXPIRES'] = env('CELERY_TASK_RESULT_EXPIRES', 5*60*60)
+        s['CELERY_TASK_RESULT_EXPIRES'] = env('CELERY_TASK_RESULT_EXPIRES', 5 * 60 * 60)
         s['CELERY_ACCEPT_CONTENT'] = env('CELERY_ACCEPT_CONTENT', ['json'])
         s['CELERY_TASK_SERIALIZER'] = env('CELERY_TASK_SERIALIZER', 'json')
-
 
         s['CELERYD_PREFETCH_MULTIPLIER'] = env('CELERYD_PREFETCH_MULTIPLIER', 1)
         s['CELERY_ACKS_LATE'] = env('CELERY_ACKS_LATE', True)

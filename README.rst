@@ -12,22 +12,19 @@ Contributing
 
 This is a an open-source project. We'll be delighted to receive your
 feedback in the form of issues and pull requests. Before submitting your
-pull request, please review our `contribution guidelines
-<http://docs.django-cms.org/en/latest/contributing/index.html>`_.
+pull request, please review our `contribution guidelines <http://docs.django-cms.org/en/latest/contributing/index.html>`_.
 
 We're grateful to all contributors who have helped create and maintain this package.
 Contributors are listed at the `contributors <https://github.com/divio/aldryn-celery/graphs/contributors>`_
 section.
 
-======================
 Installation & Updates
 ======================
 
 `Installation Documentation on docs.divio.com <http://docs.divio.com/en/latest/how-to/configure-celery.html>`_
 
-*********************
 Aldryn Platform Users
-*********************
+=====================
 
 Ask Aldryn staff to add this Addon to your Project. It is currently still
 hidden.
@@ -37,10 +34,8 @@ Aldryn staff has to:
  * configure the additional worker processes to run in the background (celeryd,
    celerybeat and celerycam)
 
-
-*******************
 Manual Installation
-*******************
+===================
 
 tbd.
 
